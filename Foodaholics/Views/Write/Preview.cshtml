@@ -1,0 +1,16 @@
+﻿@model Foodaholics.Models.BlogDetails
+
+@{
+    ViewBag.Title = "Preview";
+}
+
+<h2>Preview</h2>
+<button class="btn btn-default" onclick="location.href='@Url.Action("WriteBlog", "Write", new { id = Model.id})'">Back to Writing</button>
+
+<h2>@Model.Title</h2>
+<img src="@Model.CoverPicturePath" width="80%" height="400"/>
+<p>
+   @Model.htmlContent
+</p>
+
+

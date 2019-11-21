@@ -1,0 +1,26 @@
+﻿@model Foodaholics.Models.BlogDetails
+
+@{
+    ViewBag.Title = "Preview";
+}
+
+<h2>@Model.Title</h2>
+<br>
+<img src="@Model.CoverPicturePath" width="80%" height="400" class="img-thumbnail"/>
+<br>
+<p>
+    @Model.htmlContent
+</p>
+
+<p class="text-info">Posted by: @Model.WriterName</p>
+<p class="text-info">Posted: @Model.Posted</p>
+
+
+
+@if (Session["RollId"] != null)
+{
+    if ((int)Session["RollId"] == 3)
+    { 
+        <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Write", new { id=Model.id})'">Delete This Blog</button>        
+    }
+}

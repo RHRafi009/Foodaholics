@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "CreateBlog";
+}
+
+<h2>Create a new Blog</h2>
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="Title" class="control-label">Title</label>
+        <div>
+            <input type="text" name="Title" required class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="CoverPicture" class="control-label">Upload Cover Picture</label>
+        <div>
+            <input type="file" name="CoverPicture" required class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <input type="submit" name="submit" value="Next" class="btn btn-default" formaction="CreateBlog" />
+            <button class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Write")'">Cancel</button>
+        </div>
+    </div>
+</form>
+

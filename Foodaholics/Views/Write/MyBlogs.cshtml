@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Foodaholics.Models.ShowBlog>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Posted Blogs</h2>
+
+<p>
+    <button class="btn btn-default" onclick="location.href='@Url.Action("CreateBlog","Write")'">Create a new Blog</button>
+    <button class="btn btn-default" onclick="location.href='@Url.Action("MyBlogs","Write")'">My Blogs</button>
+</p>
+<table class="table">
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td class="text-danger">No Blog to show</td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.CoverPicturePath)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.like)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.watch)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Posted)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th></th>
+        </tr>
+
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CoverPicturePath)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.like)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.watch)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Posted)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    <button class="btn btn-default" onclick="location.href='@Url.Action("Details", "Feed", new { id=item.id})'">Show</button> ||
+                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Write", new { id=item.id})'">Delete</button>
+                </td>
+            </tr>
+        }
+    }
+
+
+</table>
+
+

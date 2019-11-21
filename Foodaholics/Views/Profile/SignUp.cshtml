@@ -1,0 +1,115 @@
+﻿@model Foodaholics.Models.CreateUser
+
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<h2>SignUp</h2>
+
+
+@using (Html.BeginForm("SignUp", "Profile", FormMethod.Post, new { enctype="multipart/form-data", onsubmit="return ValidateForm()"}))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>CreateUser</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" , @id ="name"} })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @id ="email" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", @id ="pass"} } )
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ConPassword, new { htmlAttributes = new { @class = "form-control", @type = "password", @id ="conpass"} } )
+                @Html.ValidationMessageFor(model => model.ConPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+
+    function ValidateForm()
+    {
+        var name = document.getElementById("name").value;
+        if (!Empty(name))
+        {
+            alert("name can not be empty");
+            console.log("Name is empty");
+            return false;
+        }
+            
+        var email = document.getElementById("email").value;
+        if (!Empty(email)) {
+            alert("Email can not be empty");
+            console.log("Email is empty");
+            return false;
+        } else {
+            var emailIndex = email.split("@@").length - 1;
+            if (emailIndex !== 1) {
+                alert("email is not valid");
+                console.log(email + " is not valid" + emailIndex);
+                return false;
+            }
+
+        }
+        var pass = document.getElementById("pass").value;
+        var conpass = document.getElementById("conpass").value;
+        if (pass.length < 8) {
+            alert("Password must have at least 8 characters");
+            console.log(pass);
+            return false;
+        } else if (pass !== conpass) {
+            alert("Password and Confirm password did not match");
+            console.log(pass + " " + conpass);
+            return false;
+        }
+        
+        //console.log(@Model.Name);
+        //var data @Model.Name;
+        console.log("Form valid");
+        return true;
+    }
+
+    function Empty(val) {
+        if (val === undefined || val === "")
+        {
+            return false;
+        }
+        return true;
+    }
+</script>

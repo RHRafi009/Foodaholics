@@ -1,0 +1,31 @@
+﻿@model Foodaholics.Models.WriteBlog
+
+@{
+    ViewBag.Title = "WriteBlog";
+}
+
+<h2>Write</h2>
+<h3>@Model.Title</h3>
+@using (Html.BeginForm("WriteAction", "Write", FormMethod.Post, new { content = Model.Content,  @style="width: 100%"}))
+{
+<div class="form-group">
+    <input type="submit" value="Bold" class="btn btn-default" name="Bold" />
+    <input type="submit" value="Add a Link" name="Link" class="btn btn-default" />
+    <input type="submit" value="Italic" name="Italic" class="btn btn-default" />
+    <input type="submit" value="Add a Picture" name="AddPicture" class="btn btn-default" />
+    <input type="submit" value="New paragraph" name="AddPara" class="btn btn-default" />
+    <input type="submit" value="Preview" name="Preview" class="btn btn-default" />
+    <input type="submit" value="Clear" name="Clear" class="btn btn-danger" />
+</div>
+<div class="form-group">
+    <div>
+        <textarea name="content" class="" cols="100" rows="20" width="80%" required>@Model.Content</textarea>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save as Draft" name="Draft" class="btn btn-primary" />
+        <input type="submit" value="Post this blog" name="Post" class="btn btn-primary" />
+    </div>
+</div>
+}
+
+

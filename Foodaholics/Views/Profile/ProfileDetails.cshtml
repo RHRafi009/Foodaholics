@@ -1,0 +1,57 @@
+﻿@model Foodaholics.Models.User
+
+@{
+    ViewBag.Title = "ProfileDetails";
+}
+
+<h2>Profile</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>*@
+
+        <dt>
+            Profile Picture
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ProfilePicturePath)" class="img-thumbnail" width="300" height="300"/>
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Role.RoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.RoleName)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    <button class="btn btn-default" onclick="location.href='@Url.Action("UpdatePassword","Profile")'">Update Password</button>
+    <button class="btn btn-default"  onclick="location.href='@Url.Action("UploadProfilePicture","Profile")'">Update Profile Picture</button>
+</p>

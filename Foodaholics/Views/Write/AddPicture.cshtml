@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "AddPicture";
+}
+
+<h2>Upload Picture</h2>
+
+@using (Html.BeginForm("UploadPicture", "Write", FormMethod.Post, new { enctype="multipart/form-data"})) {
+    <div class="form-group">
+        <input type="file" name="Picture"/>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Uplaod" class="btn btn-default"/>
+        <input type="button" value="cancel" class="btn btn-danger" onclick="location.href='@Url.Action("CancelUploadPicture","Write")'"/>
+    </div>
+
+}
+

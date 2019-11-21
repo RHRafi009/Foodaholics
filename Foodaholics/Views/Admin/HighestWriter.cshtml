@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Foodaholics.Models.Writer>
+@{
+    ViewBag.Title = "HighestWriter";
+}
+
+<br>
+<button class="btn btn-default" onclick="location.href='@Url.Action("Index", "Admin")'">Back to Admin Panel</button>
+
+<h2>Highest Writer</h2>
+
+<table class="table">
+
+
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td>
+                <p class="text-danger">No Writer to show</p>
+            </td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="text-capitalize">
+                        <h3>@item.Name</h3>
+                    </div>
+                    <div>
+                        <img src="@Url.Content(item.ProfilePicturePath)" class="img-thumbnail" width="150" height="150" />
+                    </div>
+                    <div>
+                        Watch: <span class="text-info">@item.Watch</span>
+                    </div>
+                </td>
+
+            </tr>
+        }
+    }
+
+
+
+</table>
